@@ -1,0 +1,558 @@
+:root {
+    --soft-pink: #fff0f5;
+    --deep-pink: #ff4d85;
+    --gold: #d4af37;
+    --text-dark: #333;
+    --glass-bg: #ffffff;
+    --glass-border: rgba(255, 77, 133, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--soft-pink);
+    overflow-x: hidden;
+    color: var(--text-dark);
+}
+
+.step {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.step.active {
+    display: flex;
+    opacity: 1;
+    z-index: 10;
+}
+
+.step.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Button Base */
+.btn {
+    background: linear-gradient(45deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 10px 20px rgba(255, 117, 140, 0.3);
+    cursor: pointer;
+    transform: translateZ(0);
+    will-change: transform;
+    pointer-events: auto;
+    z-index: 100;
+}
+
+.hidden-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Step 1 */
+#step-1 {
+    background: #fff0f5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    will-change: transform, opacity;
+}
+
+.envelope-container {
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    will-change: transform, opacity;
+}
+
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 25px;
+    display: inline-block;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
+.envelope-icon {
+    font-size: 6.5rem;
+    filter: drop-shadow(0 10px 25px rgba(255, 77, 133, 0.5)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+    animation: floatEnvelope 3s ease-in-out infinite;
+    user-select: none;
+    will-change: transform, opacity;
+}
+
+@keyframes floatEnvelope {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-12px) scale(1.05); }
+}
+
+.popping-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 4.5rem;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 20;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+    will-change: transform, opacity;
+}
+
+.envelope-heading {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--deep-pink);
+    will-change: transform, opacity;
+}
+
+.envelope-subtext {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #444444;
+    will-change: transform, opacity;
+}
+
+/* Step 2 - Memory Lock Solid White Card */
+#step-2 {
+    background: #ffe5ed;
+    overflow: visible !important;
+}
+
+.step2-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px 30px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 15px 40px rgba(255, 59, 108, 0.15);
+    border: 1px solid rgba(255, 77, 133, 0.15);
+    position: relative;
+    z-index: 10;
+    overflow: visible !important;
+}
+
+.step2-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ff4d85;
+}
+
+.step2-card p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.date-picker {
+    width: 100%;
+    padding: 16px;
+    margin: 15px 0 20px;
+    border: 2px solid rgba(255, 77, 133, 0.3);
+    border-radius: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #ff4d79;
+    background: #ffffff;
+    outline: none;
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto;
+    cursor: pointer;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-picker:focus {
+    border-color: #ff4d85;
+    box-shadow: 0 0 0 4px rgba(255, 77, 133, 0.15);
+}
+
+/* Prevent Android WebView crash on native select popup */
+.flatpickr-monthDropdown-months {
+    pointer-events: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+.hint {
+    color: #ff4d85;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* Glass Card for other steps if used */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transform: translateZ(0);
+}
+.glass-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--deep-pink);
+}
+
+/* Step 3 */
+#step-3 {
+    position: absolute;
+    height: auto;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #ffe5ed, #ffd1df);
+}
+.scroll-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.gallery-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff4d85;
+    margin-bottom: 30px;
+}
+.gallery-item {
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+    will-change: transform;
+}
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.gallery-item img:hover, .gallery-item img:active {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+.caption {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 15px;
+    color: #555;
+}
+.sunflower-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 2.5rem;
+    z-index: 2;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+.caption-box {
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.15;
+    font-size: 2rem;
+    font-weight: 700;
+    white-space: nowrap;
+    color: #000;
+    pointer-events: none;
+}
+.padding-bottom {
+    height: 100px;
+}
+
+/* Step 4 */
+.dreamy-bg {
+    background: #0f172a;
+    color: white;
+}
+.fireflies {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+.realization-content {
+    z-index: 1;
+    text-align: center;
+    padding: 30px;
+}
+.r-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateZ(0);
+}
+.firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px #fff, 0 0 20px 2px #ffeb3b;
+    animation: float var(--duration) ease-in-out infinite alternate;
+}
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+}
+
+/* Step 5 */
+.cinematic-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://i.postimg.cc/76FVhG7B/5625.jpg');
+    background-size: cover;
+    background-position: center;
+    transform-origin: center;
+    z-index: 0;
+}
+.reveal-content {
+    z-index: 1;
+    text-align: center;
+    padding: 40px;
+}
+.grand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #ffffff;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    margin-bottom: 30px;
+}
+#reveal-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    box-shadow: none;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+.mt-4 {
+    margin-top: 30px;
+}
+
+/* Step 6 */
+.paper-container {
+    background: #ffffff;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.typewriter-content {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #333333;
+    min-height: 150px;
+}
+.typewriter-content.typewriter-cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #ff4d85;
+    text-align: right;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Step 6, 7, 8, 9 Background & Global Config */
+.pastel-bg {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffb6c1 100%);
+}
+
+/* Base Card Style */
+.global-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    padding: 40px 30px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Typography & Buttons */
+.pink-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #d81b60;
+}
+.dark-subtext {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #333333;
+    margin-bottom: 25px;
+}
+.expression-btns, .party-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.expr-btn {
+    background: #ffffff;
+    color: #333333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+    pointer-events: auto;
+    z-index: 100;
+}
+.expr-btn:active {
+    transform: scale(0.9);
+}
+
+.solid-pink-btn {
+    background-color: #ff4d79;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(255, 77, 121, 0.3);
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 100;
+    transition: transform 0.2s;
+}
+.solid-pink-btn:active {
+    transform: scale(0.95);
+}
+
+.party-btn {
+    padding: 12px 20px;
+}
+
+/* Step 9 (The Promise) */
+.tiny-heart {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(255, 77, 121, 0.3));
+    animation: heartbeat 1.5s infinite;
+}
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.2); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.2); }
+    60% { transform: scale(1); }
+}
+.cursive-promise-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #333333;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+/* Step 10 (WhatsApp Message) */
+#secret-msg {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(255, 77, 121, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #333333;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+    pointer-events: auto;
+    z-index: 100;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+#secret-msg:focus {
+    border-color: #ff4d79;
+    box-shadow: 0 0 8px rgba(255, 77, 121, 0.2);
+}
+#secret-msg::placeholder {
+    color: #999999;
+}

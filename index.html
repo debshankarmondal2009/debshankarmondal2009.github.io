@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+
+    <!-- Audio Elements -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://www.dropbox.com/scl/fi/naejepvvqrohn6z8c8ee6/ARIJIT-SINGH_-Woh-Din-Lyrical-Chhichhore-Sushant-Shraddha-Pritam-Amitabh-1786770761435.mp3?rlkey=e9u7e1qt1zkxldg4tkjvevdla&st=9gp0jbeg&raw=1" type="audio/mpeg">
+    </audio>
+
+    <!-- STEP 1: The Mystery Entry -->
+    <section id="step-1" class="step active">
+        <div class="envelope-container">
+            <div class="envelope-wrapper" id="envelope-btn">
+                <div class="envelope-icon">💌</div>
+                <div class="popping-heart" id="popping-heart">❤️</div>
+            </div>
+            <h1 class="envelope-heading">I have something very special for you...</h1>
+            <p class="envelope-subtext">Click the heart envelope to open</p>
+        </div>
+    </section>
+
+    <!-- STEP 2: The Secret Password / Memory Lock -->
+    <section id="step-2" class="step hidden">
+        <div class="step2-card" id="password-card">
+            <h2>Memory Lock</h2>
+            <p>On which date did we meet for the very first time?</p>
+            <input type="text" id="magic-date" class="date-picker" placeholder="Select Date...">
+            <p id="password-hint" class="hint" style="display: none; color: #ff4d79; font-weight: bold;">Hint: It was a beautiful day in March 2026! 🌸</p>
+            <button id="unlock-btn" class="btn">Unlock</button>
+        </div>
+    </section>
+
+    <!-- STEP 3: Memory Lane -->
+    <section id="step-3" class="step hidden">
+        <div class="scroll-container">
+            <h2 class="gallery-title">Memory Lane</h2>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/GpCznht9/Screenshot-20260806-115834-Photos.png" alt="Memory 1" loading="lazy">
+                <p class="caption">Where every beautiful memory begins... ✨</p>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/nLW81DTg/file-000000005340820b8d251d7a2c6aa5e0.png" alt="Memory 2" loading="lazy">
+                <p class="caption">The cutest version of you... 🥺</p>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/Kjvnv1hY/image-1.jpg" alt="Memory 3" loading="lazy">
+                <p class="caption">A random frame, but a beautiful smile... 💫</p>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/vB5YKh16/file-00000000bdd471f89b1c49901f38845a.png" alt="Memory 4" loading="lazy">
+                <p class="caption">Glowing brighter than the candlelight... 🕯️</p>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="sunflower-badge">🌻</div>
+                <img src="https://i.postimg.cc/GprJrkkV/Sunflower.png" alt="Memory 5" loading="lazy">
+                <p class="caption">Always blooming and cheerful, just like a Sunflower 🌻</p>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/mD3vW5Tr/image-2.jpg" alt="Memory 6" loading="lazy">
+                <p class="caption">Looking absolutely gorgeous in this green saree... 💚</p>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/GmPGMHZf/5850-2.jpg" alt="Memory 7" loading="lazy">
+                <div class="caption-box">
+                    <div class="watermark">Ro45forever💙</div>
+                    <p class="caption">The ultimate Hitman fan I know... 🏏</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/XJNZ9t1v/file-00000000ca008211bea3fe1a3b7348ba.png" alt="Memory 8" loading="lazy">
+                <p class="caption">Making the best memories with friends at the fair... 🎡</p>
+            </div>
+
+            <button id="memory-continue-btn" class="btn">Continue ✨</button>
+            <div class="padding-bottom"></div>
+        </div>
+    </section>
+
+    <!-- STEP 4: The Realization -->
+    <section id="step-4" class="step hidden dreamy-bg">
+        <div class="fireflies" id="fireflies-container"></div>
+        <div class="realization-content">
+            <h2 id="r-text-1" class="r-text">We might not be a couple...</h2>
+            <h2 id="r-text-2" class="r-text">but what we have is rarer than anything else...</h2>
+            <h2 id="r-text-3" class="r-text">It's a pure bond that shines brighter than the stars.</h2>
+            <button id="realization-btn" class="btn hidden-btn">Next</button>
+        </div>
+    </section>
+
+    <!-- STEP 5: The Grand Reveal -->
+    <section id="step-5" class="step hidden">
+        <div class="cinematic-bg"></div>
+        <div class="reveal-content">
+            <h1 class="grand-title">HAPPY BIRTHDAY!</h1>
+            <button id="reveal-btn" class="btn hidden-btn mt-4">Read My Heart</button>
+        </div>
+    </section>
+
+    <!-- STEP 6: The Special Message -->
+    <section id="step-6" class="step hidden pastel-bg">
+        <div class="paper-container">
+            <div class="typewriter-content" id="typewriter"></div>
+        </div>
+        <button id="msg-continue-btn" class="solid-pink-btn hidden-btn" style="margin-top: 20px;">One More Thing...</button>
+    </section>
+
+    <!-- STEP 7: The Emoji Question -->
+    <section id="step-7" class="step hidden pastel-bg">
+        <div class="global-card">
+            <h2 class="pink-heading">Wait, before you go...</h2>
+            <p class="dark-subtext">Out of our most used chat expressions, which one is your absolute favorite?</p>
+            <div class="expression-btns">
+                <button class="expr-btn">😁</button>
+                <button class="expr-btn">Accha</button>
+                <button class="expr-btn">🤧</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 8: The Party Question -->
+    <section id="step-8" class="step hidden pastel-bg">
+        <div class="global-card">
+            <h2 class="pink-heading">A very important question!</h2>
+            <p class="dark-subtext">When are you giving me the birthday party?</p>
+            <div class="party-btns">
+                <button class="solid-pink-btn party-btn">Today! 🎉</button>
+                <button class="solid-pink-btn party-btn">Tomorrow! 🎂</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 9: The Promise -->
+    <section id="step-9" class="step hidden pastel-bg">
+        <div class="global-card">
+            <div class="tiny-heart">❤️</div>
+            <p class="cursive-promise-text">Honestly, I don't want any fancy party or treat. All I want is a simple promise from you. Let our friendship stay exactly as beautiful and pure as it is right now, forever. Deal?</p>
+            <button id="promise-next-btn" class="solid-pink-btn" style="margin-top: 20px;">I Promise! (Next →)</button>
+        </div>
+    </section>
+
+    <!-- STEP 10: Final Step (WhatsApp) -->
+    <section id="step-10" class="step hidden pastel-bg">
+        <div class="global-card">
+            <h2 class="pink-heading" style="margin-bottom: 20px;">Write a secret message for me...</h2>
+            <textarea id="secret-msg" rows="4" placeholder="Type your message here..."></textarea>
+            <button id="send-whatsapp-btn" class="solid-pink-btn" style="margin-top: 20px;">Send to WhatsApp 💚</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
